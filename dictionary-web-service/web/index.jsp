@@ -12,9 +12,9 @@
   </head>
   <body>
 
-        <form action="">
-            <input name="wordInput" placeholder="type the word to find">
-            <br>
+        <h1>Dictionary Service</h1>
+        <form action="findWord" method="post" enctype="multipart/form-data">
+            <input name="wordInput" placeholder="type the word to find" size="32">
             <input type="submit" value="Submit">
         </form>
   </body>
