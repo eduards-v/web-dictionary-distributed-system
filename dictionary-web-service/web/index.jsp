@@ -13,7 +13,7 @@
   <body>
 
         <h1>Dictionary Service</h1>
-        <form action="findWord" method="post" enctype="multipart/form-data">
+        <form action="findWord" method="post">
             <input name="wordInput" placeholder="type the word to find" size="32">
             <input type="submit" value="Submit">
         </form>

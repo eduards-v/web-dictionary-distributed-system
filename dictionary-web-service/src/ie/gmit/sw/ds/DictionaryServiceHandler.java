@@ -1,5 +1,11 @@
 package ie.gmit.sw.ds;
 
+import ie.gmit.sw.ds.service.domain.DictionaryJob;
+import ie.gmit.sw.ds.service.facade.RMICommandDispatcher;
+import ie.gmit.sw.ds.service.facade.commands.RMICommandTypes;
+import ie.gmit.sw.ds.service.rmi.RMIThreadPool;
+import sun.misc.IOUtils;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -7,9 +13,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 // annotations removes the need to define servlets classes and url paths in web.xml
-@WebServlet("/findWord")
+@WebServlet(value = "/findWord", loadOnStartup = 1)
 public class DictionaryServiceHandler extends HttpServlet{
 
     private Logger logger = Logger.getLogger("DictionaryServiceHandlerLogger");
@@ -22,6 +30,19 @@ public class DictionaryServiceHandler extends HttpServlet{
         //The servlet context is the application itself.
         ServletContext ctx = getServletContext();
 
+        // Start InQueue listener
+        RMIThreadPool.getInstance().start();
+
+        String word = "hello";
+
+        RMICommandDispatcher dispatcher = new RMICommandDispatcher();
+        DictionaryJob job = new DictionaryJob(word);
+        dispatcher.setJob(job);
+        dispatcher.execute(RMICommandTypes.QUEUE_REQUEST_CMD);
+
+        job = dispatcher.getJob();
+
+        System.out.println(job.getJobId());
 
     }
 
@@ -42,6 +63,8 @@ public class DictionaryServiceHandler extends HttpServlet{
         resp.setHeader("Location", "http://localhost:8080/");
         // make sure to set status 302 Found
         resp.setStatus(HttpServletResponse.SC_FOUND);
-        logger.log( Level.INFO,"doPost() method");
+        logger.log( Level.INFO,"doPost() method result: ");
+        logger.log( Level.INFO, req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+
     }
 }
