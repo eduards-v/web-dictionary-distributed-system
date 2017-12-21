@@ -1,4 +1,4 @@
-package ie.gmit.sw.ds.service.rmi;
+package ie.gmit.sw.ds.service.domain;
 
 import java.io.Serializable;
 

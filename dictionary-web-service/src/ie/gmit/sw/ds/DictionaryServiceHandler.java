@@ -1,9 +1,6 @@
 package ie.gmit.sw.ds;
 
-import ie.gmit.sw.ds.service.domain.DictionaryJob;
-import ie.gmit.sw.ds.service.facade.RMICommandDispatcher;
 import ie.gmit.sw.ds.service.facade.commands.RMICommandTypes;
-import ie.gmit.sw.ds.service.facade.queues.InQueueListener;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -24,23 +21,6 @@ public class DictionaryServiceHandler extends HttpServlet{
 
     @Override
     public void init() throws ServletException {
-
-        //The servlet context is the application itself.
-        ServletContext ctx = getServletContext();
-
-        // Start InQueue listener
-        InQueueListener.getInstance().start();
-
-        String word = "hello";
-
-        RMICommandDispatcher dispatcher = new RMICommandDispatcher();
-        DictionaryJob job = new DictionaryJob(word);
-        dispatcher.setJob(job);
-        dispatcher.execute(RMICommandTypes.QUEUE_REQUEST_CMD);
-
-        job = dispatcher.getJob();
-
-        System.out.println(job.getJobId());
 
     }
 
