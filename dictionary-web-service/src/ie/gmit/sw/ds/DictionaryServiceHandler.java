@@ -3,8 +3,7 @@ package ie.gmit.sw.ds;
 import ie.gmit.sw.ds.service.domain.DictionaryJob;
 import ie.gmit.sw.ds.service.facade.RMICommandDispatcher;
 import ie.gmit.sw.ds.service.facade.commands.RMICommandTypes;
-import ie.gmit.sw.ds.service.rmi.RMIThreadPool;
-import sun.misc.IOUtils;
+import ie.gmit.sw.ds.service.facade.queues.InQueueListener;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,7 +12,6 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 // annotations removes the need to define servlets classes and url paths in web.xml
@@ -31,7 +29,7 @@ public class DictionaryServiceHandler extends HttpServlet{
         ServletContext ctx = getServletContext();
 
         // Start InQueue listener
-        RMIThreadPool.getInstance().start();
+        InQueueListener.getInstance().start();
 
         String word = "hello";
 

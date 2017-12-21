@@ -1,10 +1,7 @@
 package ie.gmit.sw.ds.service.facade.queues;
 
 import ie.gmit.sw.ds.service.domain.DictionaryJob;
-import ie.gmit.sw.ds.service.rmi.RMIThreadPool;
 
-import javax.annotation.PostConstruct;
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 

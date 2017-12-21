@@ -1,10 +1,7 @@
-package ie.gmit.sw.ds.service.rmi;
+package ie.gmit.sw.ds.domain;
 
-import java.io.Serializable;
+public class WordEntity {
 
-public class WordEntity implements Serializable{
-
-    private static final long serialVersionUID = 7777;
     private String word;
     private String description;
 
