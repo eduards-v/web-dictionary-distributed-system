@@ -23,8 +23,10 @@ public class TestRunner {
 
         LookUpResults results = LookUpResults.getInstance();
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1500);
             System.out.println("Number of results: " + results.getResultsCount());
+            System.out.println(results.getJobResult(30));
+            System.out.println(results.getJobResult(20));
 
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -4,13 +4,17 @@ import ie.gmit.sw.ds.service.facade.queues.lookup.LookUpQueue;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class QueuesManager {
 
     private static QueuesManager instance;
     private static Map<QueueType , CommandQueue> queues = new HashMap<>();
-    private volatile int jobId = 0;
+
+    // new Java 8 features from concurrent package to add thread safety with
+    // thread sharing primitives and objects
+    private final AtomicInteger jobId = new AtomicInteger(0);
 
     private QueuesManager() {
 
@@ -31,7 +35,7 @@ public class QueuesManager {
     }
 
     public int issueJobId() {
-        jobId++;
-        return jobId;
+        jobId.getAndIncrement();
+        return jobId.get();
     }
 }

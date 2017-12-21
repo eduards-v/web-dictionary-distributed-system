@@ -25,7 +25,7 @@ public class LookUpResults {
         lookupResults.put(job.getJobId(), job);
     }
 
-    public WordEntity getJobResult(String jobId){
+    public WordEntity getJobResult(int jobId){
         DictionaryJob job = lookupResults.get(jobId);
         return job.getWord();
     }
