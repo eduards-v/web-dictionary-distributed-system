@@ -1,27 +1,20 @@
 package ie.gmit.sw.ds.service.domain;
 
-import java.util.UUID;
-
 public class DictionaryJob {
 
-    private String jobId;
+    private int jobId;
     private WordEntity word;
 
-    public DictionaryJob(WordEntity word) {
+    public DictionaryJob(WordEntity word, int jobId) {
         this.word = word;
-        this.jobId = UUID.randomUUID().toString();
+        this.jobId = jobId;
     }
 
-    public String getJobId() {
+    public int getJobId() {
         return jobId;
     }
 
-    public String getWord(){
-        return word.getWord();
+    public WordEntity getWord() {
+        return word;
     }
-
-    public String getDescription(){
-        return word.getDescription();
-    }
-
 }

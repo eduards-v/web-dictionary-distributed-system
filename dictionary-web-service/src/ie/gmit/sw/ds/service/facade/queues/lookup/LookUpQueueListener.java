@@ -16,7 +16,7 @@ public class LookUpQueueListener extends Thread{
     }
 
     public static LookUpQueueListener getInstance() {
-        if(instance == null) new LookUpQueueListener();
+        if(instance == null) instance = new LookUpQueueListener();
         return instance;
     }
 
@@ -24,17 +24,17 @@ public class LookUpQueueListener extends Thread{
     public void run() {
         // set this thread to daemon, perfect for monitoring object states
         // will be terminated once there is no non-deamon threads running in JVM
-        this.setDaemon(true);
 
         AtomicReference<CommandQueue> queue = new AtomicReference<>(
                                               QueuesManager.getInstance()
-                                              .getQueue(QueueType.ADD_CMD));
+                                              .getQueue(QueueType.LOOK_UP_CMD));
 
         while(!isInterrupted()){
 
             try {
                 DictionaryJob job = queue.get().retrieveJob();
 
+                //System.out.println("Listener thread got: " + job.getWord());
                 new Thread(new LookUpQueueWorker(job)).start();
 
             } catch (InterruptedException e) {

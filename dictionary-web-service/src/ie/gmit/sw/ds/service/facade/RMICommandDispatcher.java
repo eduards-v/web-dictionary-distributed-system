@@ -13,10 +13,10 @@ public class RMICommandDispatcher {
 
     public RMICommandDispatcher(WordEntity word) {
         // wrap WordEntity with DictionaryJob
-
+        this.job = new DictionaryJob(word, queuesManager.issueJobId());
     }
 
-    public String execute(QueueType type){
+    public int execute(QueueType type){
 
         CommandQueue commandQueue = queuesManager.getQueue(type);
 

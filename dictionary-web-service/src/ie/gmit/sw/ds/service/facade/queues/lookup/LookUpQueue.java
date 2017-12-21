@@ -19,7 +19,9 @@ public class LookUpQueue implements CommandQueue {
         if(instance == null){
             instance = new LookUpQueue();
             // start listener once queue is created
-            LookUpQueueListener.getInstance().start();
+            LookUpQueueListener listener = LookUpQueueListener.getInstance();
+            listener.setDaemon(true);
+            listener.start();
         }
         return instance;
     }
@@ -28,7 +30,7 @@ public class LookUpQueue implements CommandQueue {
     public void addJob(DictionaryJob job) {
         try {
             queue.put(job);
-            System.out.println(queue.size());
+            System.out.println("LookUp Queue Size: " + queue.size());
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }

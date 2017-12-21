@@ -10,7 +10,7 @@ public class QueuesManager {
 
     private static QueuesManager instance;
     private static Map<QueueType , CommandQueue> queues = new HashMap<>();
-
+    private volatile int jobId = 0;
 
     private QueuesManager() {
 
@@ -30,4 +30,8 @@ public class QueuesManager {
         return queues.get(type);
     }
 
+    public int issueJobId() {
+        jobId++;
+        return jobId;
+    }
 }

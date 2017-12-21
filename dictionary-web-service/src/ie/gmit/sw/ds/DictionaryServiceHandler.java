@@ -1,7 +1,5 @@
 package ie.gmit.sw.ds;
 
-import ie.gmit.sw.ds.service.facade.commands.RMICommandTypes;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
