@@ -1,6 +1,6 @@
 package ie.gmit.sw.ds.service.facade.queues;
 
-import ie.gmit.sw.ds.service.facade.queues.lookup.LookUpQueueCommand;
+import ie.gmit.sw.ds.service.facade.queues.lookup.LookUpQueue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class QueuesManager {
         if(instance == null){
             instance = new QueuesManager();
 
-            queues.put(QueueType.LOOK_UP_CMD, LookUpQueueCommand.getInstance());
+            queues.put(QueueType.LOOK_UP_CMD, LookUpQueue.getInstance());
 
         }
         return instance;

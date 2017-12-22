@@ -6,18 +6,18 @@ import ie.gmit.sw.ds.service.facade.queues.QueueCommandator;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class LookUpQueueCommand implements QueueCommandator {
+public class LookUpQueue implements QueueCommandator {
 
-    private static LookUpQueueCommand instance;
+    private static LookUpQueue instance;
     private BlockingQueue<DictionaryJob> queue = new ArrayBlockingQueue(100);
 
 
-    private LookUpQueueCommand() {
+    private LookUpQueue() {
     }
 
-    public static LookUpQueueCommand getInstance() {
+    public static LookUpQueue getInstance() {
         if(instance == null){
-            instance = new LookUpQueueCommand();
+            instance = new LookUpQueue();
             // start listener once queue is created
             LookUpQueueListener listener = LookUpQueueListener.getInstance();
             listener.setDaemon(true);
