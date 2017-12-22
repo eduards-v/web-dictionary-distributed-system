@@ -18,6 +18,7 @@ public class LookUpQueue implements QueueCommandator {
     public static LookUpQueue getInstance() {
         if(instance == null){
             instance = new LookUpQueue();
+
             // start listener once queue is created
             LookUpQueueListener listener = LookUpQueueListener.getInstance();
             listener.setDaemon(true);

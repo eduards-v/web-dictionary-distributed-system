@@ -36,6 +36,7 @@ public class LookUpQueueWorker implements Runnable {
         AtomicReference<ResultsStorage> resultsMap = new AtomicReference<>(ResultsStorage.getInstance());
 
         try {
+
             RemoteWordEntity rwe = rmiDictionary.lookup(job.getWord().getWord());
             job.getWord().setDescription(rwe.getDescription());
             Thread.sleep(1000);
@@ -45,8 +46,6 @@ public class LookUpQueueWorker implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // Make an RMI call, get result and place it into
-        // results concurrent hashmap.
 
 
     }

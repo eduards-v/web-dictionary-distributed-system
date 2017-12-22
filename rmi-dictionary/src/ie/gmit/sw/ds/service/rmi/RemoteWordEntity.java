@@ -7,5 +7,7 @@ public interface RemoteWordEntity extends Remote{
 
     String getWord() throws RemoteException;
     String getDescription() throws RemoteException;
+    void setWord(String word) throws RemoteException;
+    void setDescription(String description) throws RemoteException;
 
 }

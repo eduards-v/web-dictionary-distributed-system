@@ -1,4 +1,4 @@
-package ie.gmit.sw.ds.service.facade.queues.creation;
+package ie.gmit.sw.ds.service.facade.queues.modification;
 
 import ie.gmit.sw.ds.service.domain.DictionaryJob;
 import ie.gmit.sw.ds.service.rmi.DictionaryService;
@@ -8,15 +8,13 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
-public class CreationQueueWorker implements Runnable {
+public class ModificationQueueWorker implements Runnable{
 
     private DictionaryJob job;
-    // Remote interface to invoke methods that are implemented in another server
     private DictionaryService rmiDictionary;
 
-    public CreationQueueWorker(DictionaryJob job) {
+    public ModificationQueueWorker(DictionaryJob job) {
         this.job = job;
-
         // setting up RMI communication interface
         try {
             this.rmiDictionary = (DictionaryService) Naming.lookup("rmi://127.0.0.1:1099/dictionaryService");
@@ -33,7 +31,7 @@ public class CreationQueueWorker implements Runnable {
     public void run() {
         // RMI request to create new word.
         try {
-            rmiDictionary.create(job.getWord().getWord(), job.getWord().getDescription());
+            rmiDictionary.modify(job.getWord().getWord(), job.getWord().getDescription());
         } catch (RemoteException e) {
             e.printStackTrace();
         }

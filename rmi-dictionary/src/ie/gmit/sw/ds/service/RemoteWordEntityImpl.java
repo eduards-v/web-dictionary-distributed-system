@@ -28,6 +28,16 @@ public class RemoteWordEntityImpl extends UnicastRemoteObject implements RemoteW
     }
 
     @Override
+    public void setWord(String word) throws RemoteException {
+        this.word.setWord(word);
+    }
+
+    @Override
+    public void setDescription(String description) throws RemoteException {
+        this.word.setDescription(description);
+    }
+
+    @Override
     public void unreferenced() {
         System.out.println( "RemoteMessageImpl: unreferenced() called.");
     }

@@ -19,7 +19,6 @@
 <body>
     <h2>Search dictionary for words</h2>
 
-    <h1>Dictionary Service</h1>
     <br>
     <form action="" name = "findWord" method="post">
         <input name="wordInput" placeholder="type the word to find" size="32">
@@ -31,19 +30,23 @@
        int jobId = 0;
        String word = "";
        if(request.getMethod().equals("POST")) {
+           // get input parameters
            word = request.getParameter("wordInput");
 
-           request.setAttribute("wordBean", new WordEntity(word));
-           WordEntity wordEntity = (WordEntity) request.getAttribute("wordBean");
-
-           request.setAttribute("commandDisp", new RMICommandDispatcher(wordEntity));
-           RMICommandDispatcher dispatcher = (RMICommandDispatcher) request.getAttribute("commandDisp");
+           // set up entity
+           WordEntity wordEntity = new WordEntity(word);
+           // get command dispatcher to send RMI request
+           RMICommandDispatcher dispatcher = new RMICommandDispatcher(wordEntity);
+           // dispatch command , get back job id
            jobId = dispatcher.execute(QueueType.LOOK_UP_CMD);
 
+           // object to retrieve results
            RMIResultsRetriever retriever = new ConcreteResultsRetriever();
     %>
 
+
     Retrieving Result: <%
+             // try get results
             try {
                 wordEntity = retriever.retrieve(jobId);
 

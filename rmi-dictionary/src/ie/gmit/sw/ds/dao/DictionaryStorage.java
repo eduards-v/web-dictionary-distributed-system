@@ -39,5 +39,16 @@ public class DictionaryStorage {
         return new WordEntity(word, "Word not found");
     }
 
+    public void createWord(String word, String description){
+        dictionary.put(word, new WordEntity(word, description));
+    }
+
+    public void deleteWord(String word){
+        dictionary.remove(word);
+    }
+
+    public void modifyWord(String word, String description){
+        dictionary.replace(word , new WordEntity(word, description));
+    }
 
 }

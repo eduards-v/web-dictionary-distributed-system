@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td> <a href="lookup.jsp">Dictionary Lookup</a> </td>
-                <td> <a href="lookup.jsp">Add new word</a> </td>
+                <td> <a href="create.jsp">Add new word</a> </td>
                 <td> <a href="lookup.jsp">Remove a word</a> </td>
                 <td> <a href="lookup.jsp">Modify existing word</a> </td>
             </tr>
