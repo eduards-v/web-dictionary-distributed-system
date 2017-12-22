@@ -1,7 +1,7 @@
 package ie.gmit.sw.ds.service.facade.queues.lookup;
 
 import ie.gmit.sw.ds.service.domain.DictionaryJob;
-import ie.gmit.sw.ds.service.facade.queues.CommandQueue;
+import ie.gmit.sw.ds.service.facade.queues.QueueCommandator;
 import ie.gmit.sw.ds.service.facade.queues.QueueType;
 import ie.gmit.sw.ds.service.facade.queues.QueuesManager;
 
@@ -25,7 +25,7 @@ public class LookUpQueueListener extends Thread{
         // set this thread to daemon, perfect for monitoring object states
         // will be terminated once there is no non-deamon threads running in JVM
 
-        AtomicReference<CommandQueue> queue = new AtomicReference<>(
+        AtomicReference<QueueCommandator> queue = new AtomicReference<>(
                                               QueuesManager.getInstance()
                                               .getQueue(QueueType.LOOK_UP_CMD));
 

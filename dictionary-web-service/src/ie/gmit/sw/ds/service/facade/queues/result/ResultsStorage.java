@@ -5,17 +5,17 @@ import ie.gmit.sw.ds.service.domain.WordEntity;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-public class LookUpResults {
+public class ResultsStorage {
 
-    private static LookUpResults instance;
+    private static ResultsStorage instance;
     private static ConcurrentHashMap<Integer, DictionaryJob> lookupResults;
 
-    private LookUpResults() {
+    private ResultsStorage() {
     }
 
-    public static LookUpResults getInstance() {
+    public static ResultsStorage getInstance() {
         if(instance == null){
-            instance = new LookUpResults();
+            instance = new ResultsStorage();
             lookupResults = new ConcurrentHashMap<>();
         }
         return instance;
@@ -27,10 +27,14 @@ public class LookUpResults {
 
     public WordEntity getJobResult(int jobId){
         DictionaryJob job = lookupResults.get(jobId);
+        if(job == null){
+            return new WordEntity("", "no job found with this id");
+        }
         return job.getWord();
     }
 
     public int getResultsCount(){
         return lookupResults.size();
     }
+
 }

@@ -4,7 +4,7 @@ package ie.gmit.sw.ds.service;
 import ie.gmit.sw.ds.service.domain.WordEntity;
 import ie.gmit.sw.ds.service.facade.RMICommandDispatcher;
 import ie.gmit.sw.ds.service.facade.queues.QueueType;
-import ie.gmit.sw.ds.service.facade.queues.result.LookUpResults;
+import ie.gmit.sw.ds.service.facade.queues.result.ResultsStorage;
 
 public class TestRunner {
 
@@ -21,7 +21,7 @@ public class TestRunner {
             System.out.println("New Job: " + id);
         }
 
-        LookUpResults results = LookUpResults.getInstance();
+        ResultsStorage results = ResultsStorage.getInstance();
         try {
             Thread.sleep(1500);
             System.out.println("Number of results: " + results.getResultsCount());

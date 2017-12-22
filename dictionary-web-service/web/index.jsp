@@ -8,14 +8,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>English Dictionary</title>
+      <title>English Dictionary</title>
+      <style>
+          table, th, td {
+              border: 1px solid black;
+          }
+      </style>
   </head>
   <body>
+        <h1>Welcome to Dictionary Service</h1>
 
-        <h1>Dictionary Service</h1>
-        <form action="findWord" method="post">
-            <input name="wordInput" placeholder="type the word to find" size="32">
-            <input type="submit" value="Submit">
-        </form>
+        <table>
+            <tr>
+                <th>Service offer following options</th>
+            </tr>
+            <tr>
+                <td> <a href="lookup.jsp">Dictionary Lookup</a> </td>
+                <td> <a href="lookup.jsp">Add new word</a> </td>
+                <td> <a href="lookup.jsp">Remove a word</a> </td>
+                <td> <a href="lookup.jsp">Modify existing word</a> </td>
+            </tr>
+        </table>
+
   </body>
 </html>

@@ -1,7 +1,7 @@
 package ie.gmit.sw.ds.service.facade.queues.lookup;
 
 import ie.gmit.sw.ds.service.domain.DictionaryJob;
-import ie.gmit.sw.ds.service.facade.queues.result.LookUpResults;
+import ie.gmit.sw.ds.service.facade.queues.result.ResultsStorage;
 import ie.gmit.sw.ds.service.rmi.DictionaryService;
 import ie.gmit.sw.ds.service.rmi.RemoteWordEntity;
 
@@ -33,13 +33,16 @@ public class LookUpQueueWorker implements Runnable {
     @Override
     public void run() {
         //System.out.println(Thread.currentThread().getName());
-        AtomicReference<LookUpResults> resultsMap = new AtomicReference<>(LookUpResults.getInstance());
+        AtomicReference<ResultsStorage> resultsMap = new AtomicReference<>(ResultsStorage.getInstance());
 
         try {
             RemoteWordEntity rwe = rmiDictionary.lookup(job.getWord().getWord());
             job.getWord().setDescription(rwe.getDescription());
+            Thread.sleep(1000);
             resultsMap.get().addJobResult(job);
         } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         // Make an RMI call, get result and place it into

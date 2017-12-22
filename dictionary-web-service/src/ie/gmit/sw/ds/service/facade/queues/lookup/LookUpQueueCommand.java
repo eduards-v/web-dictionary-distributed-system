@@ -1,23 +1,23 @@
 package ie.gmit.sw.ds.service.facade.queues.lookup;
 
 import ie.gmit.sw.ds.service.domain.DictionaryJob;
-import ie.gmit.sw.ds.service.facade.queues.CommandQueue;
+import ie.gmit.sw.ds.service.facade.queues.QueueCommandator;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class LookUpQueue implements CommandQueue {
+public class LookUpQueueCommand implements QueueCommandator {
 
-    private static LookUpQueue instance;
+    private static LookUpQueueCommand instance;
     private BlockingQueue<DictionaryJob> queue = new ArrayBlockingQueue(100);
 
 
-    private LookUpQueue() {
+    private LookUpQueueCommand() {
     }
 
-    public static LookUpQueue getInstance() {
+    public static LookUpQueueCommand getInstance() {
         if(instance == null){
-            instance = new LookUpQueue();
+            instance = new LookUpQueueCommand();
             // start listener once queue is created
             LookUpQueueListener listener = LookUpQueueListener.getInstance();
             listener.setDaemon(true);

@@ -2,7 +2,7 @@ package ie.gmit.sw.ds.service.facade;
 
 import ie.gmit.sw.ds.service.domain.DictionaryJob;
 import ie.gmit.sw.ds.service.domain.WordEntity;
-import ie.gmit.sw.ds.service.facade.queues.CommandQueue;
+import ie.gmit.sw.ds.service.facade.queues.QueueCommandator;
 import ie.gmit.sw.ds.service.facade.queues.QueueType;
 import ie.gmit.sw.ds.service.facade.queues.QueuesManager;
 
@@ -18,7 +18,7 @@ public class RMICommandDispatcher {
 
     public int execute(QueueType type){
 
-        CommandQueue commandQueue = queuesManager.getQueue(type);
+        QueueCommandator commandQueue = queuesManager.getQueue(type);
 
         commandQueue.addJob(job);
 

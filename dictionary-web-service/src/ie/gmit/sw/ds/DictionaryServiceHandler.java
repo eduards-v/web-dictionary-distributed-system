@@ -7,7 +7,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
+
 
 // annotations removes the need to define servlets classes and url paths in web.xml
 @WebServlet(value = "/findWord", loadOnStartup = 1)
@@ -15,20 +15,17 @@ public class DictionaryServiceHandler extends HttpServlet{
 
     private Logger logger = Logger.getLogger("DictionaryServiceHandlerLogger");
 
-
-
     @Override
     public void init() throws ServletException {
+
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         logger.log( Level.INFO,"doGet() method");
 
-        super.doGet(req, resp);
     }
 
     @Override
@@ -36,11 +33,10 @@ public class DictionaryServiceHandler extends HttpServlet{
         //super.doPost(req, resp);
 
         // redirects to index.jsp
-        resp.setHeader("Location", "http://localhost:8080/");
+        //resp.setHeader("Location", "http://localhost:8080/");
         // make sure to set status 302 Found
-        resp.setStatus(HttpServletResponse.SC_FOUND);
-        logger.log( Level.INFO,"doPost() method result: ");
-        logger.log( Level.INFO, req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+        //resp.setStatus(HttpServletResponse.SC_FOUND);
+        logger.log( Level.INFO,"doPost() method result: " + req.getParameter("wordInput"));
 
     }
 }
